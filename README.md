@@ -1,7 +1,4 @@
-<div style="display: flex; align-items: center; margin-bottom: 16px;">
-    <img src="./img/logo.png" style="width: 32px; height: 32px; margin-right: 12px;">
-    <h1 style="margin: 0;">CareLens</h1>
-</div>
+# CareLens
 
 Examining bias in AI-driven healthcare by analyzing how large language models (LLMs) adapt clinical recommendations across varying demographic and contextual lenses.
 
