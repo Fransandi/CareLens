@@ -5,89 +5,87 @@
 
 Examining bias in AI-driven healthcare by analyzing how large language models (LLMs) adapt clinical recommendations across varying demographic and contextual lenses.
 
-![image](./img/ui.png)
-
 ---
 
 ## 🧠 Project Overview
 
-CareLens is a high-risk final project for the _AI in Healthcare_ course, part of the **Master of Science in Artificial Intelligence (MSAI)** program. The project explores how **large language models (LLMs)** tailor medical recommendations when presented with identical patient summaries but different demographic contextsm, such as gender, race, and socioeconomic status.
+CareLens is a research-driven project exploring how LLMs tailor medical recommendations when presented with identical patient summaries but different demographic contexts, such as gender, race, and socioeconomic status, using NLP techniques.
 
----
+## 🛤️ The Journey
 
-## 💡 The Idea
+### 1. Simulating Patient Data
 
-Modern LLMs can generate highly detailed medical suggestions, but do they reflect **demographic bias** when interpreting patient data?
-
-CareLens investigates this by:
-
-- Generating synthetic patient data using standardized health records
-- Creating multiple demographic **permutations** for each patient
-- Asking the **same medical questions** to an LLM (LLaMA 3.2)
-- Comparing how responses change depending on the context
-
----
-
-## 🏥 Data Generation
-
-Patient data was generated using [**Synthea**](https://github.com/synthetichealth/synthea), an open-source synthetic health record generator.
+To start, I needed realistic patient data. Using [Synthea](https://github.com/synthetichealth/synthea), I simulated 10 synthetic patients:
 
 ```bash
-# To produce a small cohort in .csv:
+# Generate a small cohort in CSV format
 ./run_synthea -p 10 -exporter.fhir.export=false --exporter.csv.export=true
 ```
 
-## 🧼 Data Parsing & Summarization
+This produced structured files like patients.csv, conditions.csv, and medications.csv — capturing realistic but ethically safe patient histories. (check them out in `/data/raw-synthea-data`)
 
-The custom script `generate_summaries.py` was used to:
+### 2. Transforming Raw Data into Summaries
 
-1. Parse the Synthea CSV files (e.g., `patients.csv`, `conditions.csv`, `medications.csv`)
+To make the data usable for LLM prompting, I wrote the script `generate_summaries.py`, which:
 
-2. Merge each patient’s clinical data into a readable text summary
+- Parsed the raw Synthea .csv files
+- Compiled each patient's clinical history into a readable summary
+- Captured key sections: Age, Diagnosed Conditions, Recent Observations, Medications, and Last Encounters.
 
-3. Save each summary as a .txt file in `data/patient_summaries/`
+Each patient's summary was saved as a .txt file under `data/patient_summaries/.`
 
-Each summary includes:
+![image](./img/medical_history_ui.png)
 
-- Age
-- Diagnosed conditions
-- Recent observations
-- Medications
-- Last encounter information
+### 3. Designing the Bias Study
 
-## 🤖 LLM Interaction
+Next, I designed targeted medical questions aimed at detecting potential bias in clinical reasoning.
 
-Using **LLaMA 3.2**, hosted locally via **LM Studio**, the script `ask_llm_questions.py` does the following:
+At the same time, I defined contextual permutations, modifying each summary by appending demographic labels:
 
-1. Defines demographic permutations (gender, race, income)
+- **Gender:** `Male, Female`
+- **Race:** `White, Black, Hispanic`
+- **Income level:** `High, Low`
 
-2. Prepends demographic context to each patient summary
+The idea is simple:
+`Same clinical summary ➔ different demographic context ➔ does the LLM respond differently?`
 
-3. Asks a series of bias-targeted questions
+### 4. Gathering Contextualized LLM Responses
 
-4. Records the LLM's answers for each demographic permutation in JSON files
+Using **LLaMA 3.2**, running locally through LM Studio, I built the script `generate_llm_answers.py`, to:
 
-The questions focus on:
+- Prepend each patient summary with demographic context
+- Ask the same set of questions across all demographic variations
+- Collect the responses into structured .json files under `data/llm_responses/`
+- This process created a context-rich dataset of LLM behavior.
 
-- Urgency of care
-- Follow-up actions
-- Mental health signals
-- Explanation tone
-- Support recommendations
+![image](./img/llm_responses_ui.png)
 
-## 🖥️ Interactive UI
+### 5. Analyzing Demographic Patterns
 
-The index.html file provides a visual interface to explore LLM responses:
+To move beyond anecdotal inspection, I built `analyze_responses.py`, which:
 
-- Select any patient (1–10)
-- View their medical summary
-- See how the same questions receive different answers based on context
-- Context is clearly broken down into badges (e.g., gender, race, income)
+- Parse the collected LLM responses
+- Groups answers by demographic categories (gender, race, income)
+- Generates stacked grouped bar charts per question showing how responses shifted across contexts
+- Saves the output images in `data/distribution_analysis/`.
 
-Built with Tailwind CSS and vanilla JavaScript
+![image](./img/demographic_analysis_ui.png)
+
+### 6. Visual Analysis UI
+
+Finally, I brought everything together through the index.html web app, where the user can:
+
+- Select a patient (1–10)
+- View their full Medical History
+- See all LLM answers by demographic group
+- Dive into Demographic Analysis, visualized through the auto-generated charts
+
+Built with Tailwind CSS and vanilla JavaScript, the UI enables anyone to intuitively explore LLM behavior.
+
+Feel free to run it locally, or check it out at:
 
 ```bash
-# To run locally:
+# Run the UI locally
 ./run.sh
 ```
 
@@ -96,24 +94,60 @@ Built with Tailwind CSS and vanilla JavaScript
 ```bash
 .
 ├── data/
-│ ├── llm_responses/ # LLM responses with demographic permutations
-│ ├── patient_summaries/ # Summarized .txt files
-│ ├── raw-synthea-data/ # Raw data from Synthea
-│ ├── questions.txt # List of questions asked to LLM
+│   ├── llm_responses/          # LLM responses across contexts (.json)
+│   ├── patient_summaries/      # Summarized medical histories (.txt)
+│   ├── raw-synthea-data/       # Raw patient files from Synthea (.csv)
+│   ├── distribution_analysis/  # Generated demographic analysis charts (.png)
+│   └── questions.json          # List of medical questions asked (.json)
 │
 ├── scripts/
-│ ├── ask_llm_questions.py # LLM prompting and answer collection script
-│ ├── generate_summaries.py # Data parsing & summary generator script
-│ ├── requirements.txt # Python dependencies for scripts
+│   ├── generate_summaries.py   # Generate Patient Summaries
+│   ├── generate_llm_answers.py # Prompting and LLM answer collection
+│   ├── analyze_responses.py    # Demographic analysis and chart generation
+│   ├── install_deps.sh         # Install Python requirements for the scripts
+│   └── requirements.txt        # Python dependencies
 │
-├── docs/
-│ ├── research-report.pdf # Research report in ACM style
-│
-├── index.html # UI for visualization
-├── README.md # You're here
-└── run.sh # Bash script to run UI locally
+├── index.html                  # Interactive UI
+├── README.md                   # You're here!
+├── research-report.pdf         # Formal research paper
+└── run.sh                      # Simple server script (to run the UI)
 ```
 
-Created by [Francisco Sandi](https://fransandi.com) as part of the **AI in Healthcare** course in the **Master's in Artificial Intelligence (MSAI)** program.
+## 🔍 Highlights
 
-📓 For more details, see the Research Report: [CareLens: Investigating Bias in AI-Driven Healthcare](https://example.com/carelens-research-report)
+- Synthetic patient cohort generated ethically
+- Bias-aware question design targeting real-world clinical risks
+- Automated demographic permutations for testing
+- Systematic prompting and collection of LLM outputs
+- Visual exploration dashboard to detect patterns and inconsistencies
+- Shareable web interface for broader exploration
+
+## 🚀 Extend and Explore CareLens
+
+CareLens was designed not just as a final project, but as a starting point.
+
+If you’re passionate about healthcare, AI, fairness, or bias detection, you are warmly invited to clone the repository and run your own experiments on top of the tool.
+
+### 🎯 Things you could easily explore:
+
+- Generate a different or larger set of synthetic patients using Synthea
+- Redesign or expand the set of medical questions
+- Introduce new demographic dimensions (e.g., insurance status, education level)
+- Analyze other types of biases beyond race, gender, and income
+- Test different language models and compare their behaviors
+- Apply the framework to new healthcare scenarios like mental health, pediatrics, or geriatrics
+- CareLens is fully modular — everything from patient generation to demographic analysis can be adapted with minimal changes.
+
+And best of all, it's completely free and open! 🧡
+
+## 📓 Read the Research Report
+
+To dive deeper into the methodology, motivations, findings, and reflections behind CareLens, make sure to check out the full Research Report:
+
+📄 [CareLens: Investigating Demographic Bias in Large Language Model Healthcare Recommendations]()
+
+It’s included directly in the repository!
+
+---
+
+Created by [Francisco Sandi](https://www.fransandi.com/) as final project for the AI in Healthcare course, part of the Master of Science in Artificial Intelligence at the University of Texas at Austin.

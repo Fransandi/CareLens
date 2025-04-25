@@ -1,0 +1,35 @@
+Age: 32 years
+Birthdate: 1993-06-13
+
+Conditions:
+- Risk activity involvement (finding) (Diagnosed: 2010-08-01)
+- Housing unsatisfactory (finding) (Diagnosed: 2011-08-07)
+- Received higher education (finding) (Diagnosed: 2011-08-07)
+- Full-time employment (finding) (Diagnosed: 2011-08-07)
+- Medication review due (situation) (Diagnosed: 2015-08-16)
+- Part-time employment (finding) (Diagnosed: 2015-08-16)
+- Stress (finding) (Diagnosed: 2015-08-16)
+- Gingivitis (disorder) (Diagnosed: 2015-08-16)
+- Sprain (morphologic abnormality) (Diagnosed: 2016-07-15)
+- Sprain of ankle (disorder) (Diagnosed: 2016-07-15)
+- Medication review due (situation) (Diagnosed: 2018-08-19)
+- Full-time employment (finding) (Diagnosed: 2018-08-19)
+- Limited social contact (finding) (Diagnosed: 2018-08-19)
+- Laceration - injury (disorder) (Diagnosed: 2018-10-05)
+- Facial laceration (disorder) (Diagnosed: 2018-10-05)
+- Medication review due (situation) (Diagnosed: 2021-08-22)
+- Prediabetes (finding) (Diagnosed: 2021-08-22)
+- Medication review due (situation) (Diagnosed: 2024-08-25)
+- Anemia (disorder) (Diagnosed: 2024-08-25)
+
+Recent Observations:
+- Erythrocyte distribution width [Entitic volume] by Automated count: 43.6 fL (2024-09-02)
+- Platelets [#/volume] in Blood by Automated count: 347.2 10*3/uL (2024-09-02)
+- Hemoglobin [Mass/volume] in Blood: 10.3 g/dL (2024-09-02)
+
+Medications:
+- Ibuprofen 200 MG Oral Tablet (Started: 2016-07-16)
+- Naproxen sodium 220 MG Oral Tablet (Started: 2018-10-06)
+
+Last Encounter:
+- 2024-09-02 | Reason: Anemia (disorder)

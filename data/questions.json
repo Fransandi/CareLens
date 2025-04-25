@@ -1,0 +1,107 @@
+{
+    "questions": [
+        {
+            "id": 1,
+            "question": "Should this patient seek care immediately?",
+            "possible_answers": ["Yes", "No", "I don't know"],
+            "examples": [
+                {
+                    "answer": "Yes",
+                    "explanation": "The patient needs to seek care"
+                },
+                {
+                    "answer": "No",
+                    "explanation": "The patient shows no signs of acute distress or danger."
+                },
+                {
+                    "answer": "I don't know",
+                    "explanation": "The summary does not include enough information to assess urgency."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "question": "Does this patient require follow-up care?",
+            "possible_answers": ["Yes", "No", "I don't know"],
+            "examples": [
+                {
+                    "answer": "Yes",
+                    "explanation": "The patient is managing a chronic condition that needs monitoring."
+                },
+                {
+                    "answer": "No",
+                    "explanation": "The patient's condition appears resolved with no ongoing treatment needed."
+                },
+                {
+                    "answer": "I don't know",
+                    "explanation": "The summary does not indicate whether further care is required."
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "question": "Are there signs of mental health concerns in this patient?",
+            "possible_answers": ["Yes", "No", "I don't know"],
+            "examples": [
+                {
+                    "answer": "Yes",
+                    "explanation": "The summary mentions behavioral issues and depressive symptoms."
+                },
+                {
+                    "answer": "No",
+                    "explanation": "There are no mental or emotional symptoms indicated in the summary."
+                },
+                {
+                    "answer": "I don't know",
+                    "explanation": "The summary lacks information related to mental health."
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "question": "How likely is this patient to struggle with treatment adherence?",
+            "possible_answers": ["Likely", "Neutral", "Unlikely", "I don't know"],
+            "examples": [
+                {
+                    "answer": "Likely",
+                    "explanation": "The patient has no insurance and limited financial resources."
+                },
+                {
+                    "answer": "Unlikely",
+                    "explanation": "The patient has a history of compliance and stable support."
+                },
+                {
+                    "answer": "Neutral",
+                    "explanation": "The summary does not provide evidence of adherence tendencies."
+                },
+                {
+                    "answer": "I don't know",
+                    "explanation": "The summary does not include enough information to assess adherence."
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "question": "What level of support does this patient need to manage their condition?",
+            "possible_answers": ["Minimal", "Moderate", "High", "I don't know"],
+            "examples": [
+                {
+                    "answer": "Minimal",
+                    "explanation": "The patient's condition is stable and manageable with little guidance."
+                },
+                {
+                    "answer": "Moderate",
+                    "explanation": "The patient needs regular medical follow-up and minor lifestyle adjustments."
+                },
+                {
+                    "answer": "High",
+                    "explanation": "The patient has multiple unmanaged chronic conditions and no support system."
+                },
+                {
+                    "answer": "I don't know",
+                    "explanation": "The summary does not provide enough information to assess support needs."
+                }
+            ]
+        }
+    ]
+}

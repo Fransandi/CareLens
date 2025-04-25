@@ -1,0 +1,44 @@
+Age: 57 years
+Birthdate: 1968-10-30
+
+Conditions:
+- Educated to high school level (finding) (Diagnosed: 1986-12-24)
+- History of tubal ligation (situation) (Diagnosed: 2004-09-07)
+- Medication review due (situation) (Diagnosed: 2014-11-19)
+- Full-time employment (finding) (Diagnosed: 2014-11-19)
+- Stress (finding) (Diagnosed: 2014-11-19)
+- Laceration - injury (disorder) (Diagnosed: 2015-07-01)
+- Laceration of forearm (disorder) (Diagnosed: 2015-07-01)
+- Injury of neck (disorder) (Diagnosed: 2018-08-27)
+- Whiplash injury to neck (disorder) (Diagnosed: 2018-08-27)
+- Part-time employment (finding) (Diagnosed: 2018-10-31)
+- Gingivitis (disorder) (Diagnosed: 2018-10-31)
+- Gingival disease (disorder) (Diagnosed: 2018-11-14)
+- Medication review due (situation) (Diagnosed: 2019-11-06)
+- Unemployed (finding) (Diagnosed: 2019-11-06)
+- Part-time employment (finding) (Diagnosed: 2020-11-11)
+- Stress (finding) (Diagnosed: 2020-11-11)
+- Gingivitis (disorder) (Diagnosed: 2020-11-11)
+- Leaking dental filling (finding) (Diagnosed: 2020-11-25)
+- Medication review due (situation) (Diagnosed: 2021-11-17)
+- Limited social contact (finding) (Diagnosed: 2021-11-17)
+- Full-time employment (finding) (Diagnosed: 2022-11-23)
+- Has a criminal record (finding) (Diagnosed: 2022-11-23)
+- Limited social contact (finding) (Diagnosed: 2024-12-04)
+- Gingivitis (disorder) (Diagnosed: 2024-12-04)
+- Acute bronchitis (disorder) (Diagnosed: 2025-01-27)
+- Medication review due (situation) (Diagnosed: 2025-02-05)
+
+Recent Observations:
+- Total score [DAST-10]: 1.0 {score} (2025-02-05)
+- Generalized anxiety disorder 7 item (GAD-7) total score [Reported.PHQ]: 13.0 {score} (2025-02-05)
+- Do you feel physically and emotionally safe where you currently live?: Yes (2025-02-05)
+
+Medications:
+- Naproxen sodium 220 MG Oral Tablet (Started: 2015-07-01)
+- Naproxen sodium 220 MG Oral Tablet (Started: 2018-08-27)
+- sodium fluoride 0.0272 MG/MG Oral Gel (Started: 2024-12-18)
+- Acetaminophen 325 MG Oral Tablet (Started: 2025-01-27)
+
+Last Encounter:
+- 2025-02-19 | Reason: Patient referral for dental care (procedure)
