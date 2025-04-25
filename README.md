@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; margin-bottom: 16px;">
-    <img src="./img/logo.svg" style="width: 26px; height: 26px; margin-right: 12px;">
+    <img src="./img/logo.png" style="width: 32px; height: 32px; margin-right: 12px;">
     <h1 style="margin: 0;">CareLens</h1>
 </div>
 
