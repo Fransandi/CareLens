@@ -11,6 +11,8 @@ Examining bias in AI-driven healthcare by analyzing how large language models (L
 
 CareLens is a research-driven project exploring how LLMs tailor medical recommendations when presented with identical patient summaries but different demographic contexts, such as gender, race, and socioeconomic status, using NLP techniques.
 
+Check it out here 👉 [https://care-lens-fransandis-projects.vercel.app/](https://care-lens-fransandis-projects.vercel.app/)
+
 ## 🛤️ The Journey
 
 ### 1. Simulating Patient Data
@@ -82,7 +84,7 @@ Finally, I brought everything together through the index.html web app, where the
 
 Built with Tailwind CSS and vanilla JavaScript, the UI enables anyone to intuitively explore LLM behavior.
 
-Feel free to run it locally, or check it out at:
+Feel free to run it locally, or check it out at: [https://care-lens-fransandis-projects.vercel.app/](https://care-lens-fransandis-projects.vercel.app/)
 
 ```bash
 # Run the UI locally
