@@ -1,8 +1,4 @@
-# CareLens
-
-Examining bias in AI-driven healthcare by analyzing how large language models (LLMs) adapt clinical recommendations across varying demographic and contextual lenses.
-
----
+![image](./img/header.png)
 
 ## 🧠 Project Overview
 
@@ -33,7 +29,7 @@ To make the data usable for LLM prompting, I wrote the script `generate_summarie
 
 Each patient's summary was saved as a .txt file under `data/patient_summaries/.`
 
-![image](./img/medical_history_ui.png)
+![image](./img/summaries.png)
 
 ### 3. Designing the Bias Study
 
@@ -57,18 +53,18 @@ Using **LLaMA 3.2**, running locally through LM Studio, I built the script `gene
 - Collect the responses into structured .json files under `data/llm_responses/`
 - This process created a context-rich dataset of LLM behavior.
 
-![image](./img/llm_responses_ui.png)
+![image](./img/responses.png)
 
 ### 5. Analyzing Demographic Patterns
 
-To move beyond anecdotal inspection, I built `analyze_responses.py`, which:
+To move beyond anecdotal inspection, I built `generate_charts.py`, which:
 
 - Parse the collected LLM responses
 - Groups answers by demographic categories (gender, race, income)
 - Generates stacked grouped bar charts per question showing how responses shifted across contexts
 - Saves the output images in `data/distribution_analysis/`.
 
-![image](./img/demographic_analysis_ui.png)
+![image](./img/charts.png)
 
 ### 6. Visual Analysis UI
 
@@ -100,15 +96,15 @@ Feel free to run it locally, or check it out at: [https://care-lens-fransandis-p
 │   └── questions.json          # List of medical questions asked (.json)
 │
 ├── scripts/
-│   ├── generate_summaries.py   # Generate Patient Summaries
+│   ├── generate_charts.py    # Demographic analysis and chart generation
 │   ├── generate_llm_answers.py # Prompting and LLM answer collection
-│   ├── analyze_responses.py    # Demographic analysis and chart generation
+│   ├── generate_summaries.py   # Generate Patient Summaries
 │   ├── install_deps.sh         # Install Python requirements for the scripts
 │   └── requirements.txt        # Python dependencies
 │
 ├── index.html                  # Interactive UI
 ├── README.md                   # You're here!
-├── research-report.pdf         # Formal research paper
+├── research_report.pdf         # Formal research paper
 └── run.sh                      # Simple server script (to run the UI)
 ```
 
@@ -141,12 +137,8 @@ And best of all, it's completely free and open! 🧡
 
 ## 📓 Read the Research Report
 
-To dive deeper into the methodology, motivations, findings, and reflections behind CareLens, make sure to check out the full Research Report:
-
-📄 [CareLens: Investigating Demographic Bias in Large Language Model Healthcare Recommendations]()
-
-It’s included directly in the repository!
+To dive deeper into the methodology, motivations, findings, and reflections behind this project, make sure to check out the research report: [Investigating Demographic Bias in Large Language Model Healthcare Recommendations](./research_report.pdf)
 
 ---
 
-Created by [Francisco Sandi](https://www.fransandi.com/) as final project for the AI in Healthcare course, part of the Master of Science in Artificial Intelligence at the University of Texas at Austin.
+Created by [Fran Sandi](https://www.fransandi.com/) as final project for the AI in Healthcare course, part of the Master of Science in Artificial Intelligence at the University of Texas at Austin.

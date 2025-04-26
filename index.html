@@ -2,19 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Favicon -->
-    <link rel="icon" href="img/favicon.ico" type="image/png" />
     <title>CareLens</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: {} } };
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="main.js"></script>
+    <link rel="icon" href="img/favicon.ico" type="image/png" />
   </head>
+
   <body class="bg-gray-50 text-gray-800 font-sans">
-    <header
-      class="w-full bg-gradient-to-r from-blue-600 to-violet-700 text-white py-8 shadow-lg mb-8"
-    >
-      <div
-        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
-      >
-        <!-- Left side: Logo + Title + Description -->
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
         <div class="flex items-center gap-4">
           <img src="img/logo.svg" alt="Logo" class="h-16 w-16" />
           <div>
@@ -26,33 +27,38 @@
             </p>
           </div>
         </div>
-
-        <!-- Right side: GitHub button -->
-        <div class="self-start md:self-auto">
+        <div class="header-buttons">
           <a
             href="https://github.com/Fransandi/CareLens"
             target="_blank"
-            class="text-sm min-w-[160px] inline-flex items-center gap-2 bg-white text-blue-700 font-semibold px-3 py-2 rounded shadow hover:bg-blue-100 transition"
+            class="button-primary"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.96.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.33-1.3-1.68-1.3-1.68-1.07-.74.08-.72.08-.72 1.18.08 1.8 1.22 1.8 1.22 1.05 1.8 2.75 1.28 3.42.98.11-.76.41-1.28.74-1.58-2.55-.29-5.23-1.27-5.23-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.15 1.17a10.98 10.98 0 0 1 2.87-.39c.97.01 1.95.13 2.87.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.57.23 2.73.12 3.02.74.8 1.18 1.82 1.18 3.07 0 4.41-2.69 5.37-5.25 5.65.43.38.81 1.11.81 2.24 0 1.62-.01 2.92-.01 3.32 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
-              />
-            </svg>
-            <span> View on GitHub </span>
+            <img
+              src="img/github.svg"
+              alt="GitHub Logo"
+              class="h-5 w-5 mr-2 ml-0"
+            />
+            <span>View on GitHub</span>
+          </a>
+          <a
+            href="./research_report.pdf"
+            target="_blank"
+            class="button-secondary"
+          >
+            <img
+              src="img/notebook.svg"
+              alt="Notebook Icon"
+              class="h-5 w-5 mr-2 ml-0"
+            />
+            <span>Read Report</span>
           </a>
         </div>
       </div>
     </header>
 
     <!-- Patient Selector -->
-    <section class="max-w-7xl mx-auto px-4 mb-4">
-      <div class="flex flex-wrap items-center gap-2">
+    <section class="selector">
+      <div class="selector-inner">
         <span class="text-sm font-medium text-gray-600 mr-2"
           >Select Patient:</span
         >
@@ -60,289 +66,94 @@
       </div>
     </section>
 
-    <main id="main" class="max-w-7xl mx-auto px-4">
+    <!-- Main -->
+    <main id="main" class="main-container">
       <!-- Tabs -->
-      <div class="max-w-7xl mx-auto px-4 py-4">
-        <div class="flex border-b border-gray-200">
-          <button
-            id="tabMedicalHistory"
-            class="text-lg px-4 py-2 text-blue-700 border-b-2 border-blue-700 font-medium focus:outline-none"
-            onclick="showTab('medicalHistory')"
-          >
-            Medical History
-          </button>
-          <button
-            id="tabResults"
-            class="text-lg px-4 py-2 text-gray-500 hover:text-blue-700 border-b-2 border-transparent font-medium focus:outline-none"
-            onclick="showTab('results')"
-          >
-            LLM Results
-          </button>
-          <button
-            id="tabDemographicAnalysis"
-            class="text-lg px-4 py-2 text-gray-500 hover:text-blue-700 border-b-2 border-transparent font-medium focus:outline-none"
-            onclick="showTab('demographicAnalysis')"
-          >
-            Demographic Analysis
-          </button>
-        </div>
+      <div class="tabs">
+        <button
+          id="tabMedicalHistory"
+          class="tab active"
+          onclick="showTab('medicalHistory')"
+        >
+          Medical History
+        </button>
+        <button id="tabResults" class="tab" onclick="showTab('results')">
+          LLM Results
+        </button>
+        <button
+          id="tabDemographicAnalysis"
+          class="tab"
+          onclick="showTab('demographicAnalysis')"
+        >
+          Demographic Analysis
+        </button>
       </div>
 
       <!-- Tab Content -->
-      <div id="medicalHistory" class="tab-content px-6">
-        <div
-          id="summary"
-          class="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-10"
-        >
-          <h2
-            id="summaryTitle"
-            class="text-2xl font-semibold text-gray-700 mb-3"
-          ></h2>
-          <pre
-            id="summaryText"
-            class="text-sm whitespace-pre-wrap overflow-hidden"
-          ></pre>
+      <div id="medicalHistory" class="tab-content">
+        <h2 class="section-title">Medical History</h2>
+        <div id="summary" class="card">
+          <h2 id="summaryTitle" class="card-title"></h2>
+          <pre id="summaryText" class="card-pre"></pre>
         </div>
       </div>
 
-      <div id="results" class="tab-content hidden px-6">
-        <h2 class="text-2xl font-semibold text-blue-700 mb-3">LLM Results</h2>
+      <div id="results" class="tab-content hidden">
+        <h2 class="section-title">LLM Results</h2>
         <div id="responses" class="space-y-10"></div>
       </div>
 
-      <div id="demographicAnalysis" class="tab-content hidden px-6">
-        <h2 class="text-2xl font-semibold text-blue-700 mb-3">
-          Demographic Analysis
-        </h2>
-        <section id="charts" class="mt-10 space-y-8"></section>
+      <div id="demographicAnalysis" class="tab-content hidden">
+        <h2 class="section-title">Demographic Analysis</h2>
+        <section id="charts" class="space-y-8"></section>
       </div>
     </main>
 
-    <script>
-      function getQueryParam(key) {
-        return new URLSearchParams(window.location.search).get(key);
-      }
-
-      function setQueryParam(key, value) {
-        const url = new URL(window.location);
-        url.searchParams.set(key, value);
-        window.history.pushState({}, "", url);
-      }
-
-      async function loadFiles(index) {
-        const responseUrl = `data/llm_responses/patient_${index}.json`;
-
-        try {
-          const responseJson = await fetch(responseUrl).then((r) => r.json());
-
-          const responsesContainer = document.getElementById("responses");
-          responsesContainer.innerHTML = "";
-
-          const summaryTitle = document.getElementById("summaryTitle");
-          summaryTitle.textContent = `Patient ${index} - Medical History`;
-
-          const summaryText = document.getElementById("summaryText");
-          summaryText.textContent = responseJson.summary;
-
-          responseJson.questions.forEach((qa) => {
-            const card = document.createElement("div");
-            card.className =
-              "bg-white rounded-lg border border-gray-200 shadow-md p-5 space-y-4";
-
-            const cardHeader = document.createElement("div");
-            cardHeader.className = "flex items-center justify-between pb-2";
-
-            const questionTitle = document.createElement("h2");
-            questionTitle.className = "text-2xl font-medium text-gray-700";
-            questionTitle.textContent = `${qa.id}. ${qa.question}`;
-
-            // Create a container for the badges
-            const badgesContainer = document.createElement("div");
-            badgesContainer.className = "flex flex-wrap justify-end gap-2 mt-2";
-
-            // Generate badges for each possible answer
-            qa.possible_answers.forEach((answer) => {
-              const badge = document.createElement("div");
-              badge.className = `inline-block bg-gray-200 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded`;
-              badge.textContent = answer;
-              badgesContainer.appendChild(badge);
-            });
-
-            // Append the badges container next to the question title
-            cardHeader.appendChild(questionTitle);
-            cardHeader.appendChild(badgesContainer);
-            card.appendChild(cardHeader);
-
-            // Create a container for the answers
-            const answersContainer = document.createElement("div");
-            answersContainer.className = "space-y-3"; // Initially hidden
-
-            qa.answers.forEach(
-              ({ gender, race, income, answer, reasoning }) => {
-                const blockContainer = document.createElement("div");
-                blockContainer.className =
-                  "pl-1 rounded bg-gradient-to-b from-blue-600 to-violet-700";
-
-                const block = document.createElement("div");
-                block.className = "bg-gray-100 p-4 roundedshadow-md";
-
-                const labelColorMap = {
-                  male: "blue",
-                  female: "pink",
-                  white: "gray",
-                  black: "indigo",
-                  hispanic: "orange",
-                  high: "green",
-                  low: "red",
-                };
-
-                const badgesHTML = [gender, race, income]
-                  .map((part) => {
-                    const label = part.toLowerCase(); // Normalize label
-                    const colorClass = labelColorMap[label] || "gray"; // Default color if label not found
-                    return `
-                    <div data-part="${part}" class="inline-block bg-${colorClass}-200 text-${colorClass}-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded capitalize">
-                    ${label} ${["High", "Low"].includes(part) ? "Income" : ""}
-                    </div>`;
-                  })
-                  .join("");
-
-                block.innerHTML = `
-                <div class="text-gray-800 text-xl mb-2">
-                  ${answer}
-                </div>
-                <div class="text-gray-600 mb-2">
-                  ${reasoning}
-                </div>
-                <div class="flex flex-wrap gap-1">${badgesHTML}</div>
-              `;
-
-                answersContainer.appendChild(blockContainer);
-                blockContainer.appendChild(block);
-              }
-            );
-
-            card.appendChild(answersContainer);
-            responsesContainer.appendChild(card);
-          });
-
-          // Populate demographic analysis charts
-          const chartsSection = document.getElementById("charts");
-          chartsSection.innerHTML = ""; // Clear previous content
-
-          responseJson.questions.slice(0, 5).forEach((qa) => {
-            const img = document.createElement("img");
-            img.src = `data/distribution_analysis/patient_${index}/question_${qa.id}.png`;
-            img.alt = `Demographic distribution for Question ${qa.id}`;
-            img.className = "max-w-full";
-
-            const figure = document.createElement("figure");
-            figure.className = "bg-white rounded-lg p-4 shadow-md mb-6";
-            figure.appendChild(img);
-
-            chartsSection.appendChild(figure);
-          });
-        } catch (err) {
-          document.getElementById("main").innerHTML =
-            "<p class='text-red-600'>❌ Error loading patient data.</p>";
-        }
-      }
-
-      let index = parseInt(getQueryParam("patient") || "1");
-
-      if (index) {
-        loadFiles(index);
-      }
-
-      // Generate patient selector buttons (1 to 10)
-      const patientButtonsContainer = document.getElementById("patientButtons");
-      for (let i = 1; i <= 10; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = `Patient ${i}`;
-        btn.className =
-          "px-3 py-1 rounded text-sm font-medium shadow transition " +
-          (i === index
-            ? "bg-blue-600 text-white"
-            : "bg-white text-blue-700 border border-blue-200 hover:bg-blue-100");
-
-        btn.addEventListener("click", () => {
-          if (i !== index) {
-            setQueryParam("patient", i);
-            location.reload(); // full reload to re-trigger everything
-          }
-        });
-
-        patientButtonsContainer.appendChild(btn);
-      }
-
-      function showTab(tabId) {
-        // Hide all tab content
-        document.querySelectorAll(".tab-content").forEach((tab) => {
-          tab.classList.add("hidden");
-        });
-
-        // Remove active styles from all tabs
-        document.querySelectorAll('[id^="tab"]').forEach((tab) => {
-          tab.classList.remove("text-blue-700", "border-blue-700");
-          tab.classList.add("text-gray-500", "border-transparent");
-        });
-
-        // Show the selected tab content
-        document.getElementById(tabId).classList.remove("hidden");
-
-        // Add active styles to the selected tab
-        document
-          .getElementById(
-            `tab${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`
-          )
-          .classList.add("text-blue-700", "border-blue-700");
-        document
-          .getElementById(
-            `tab${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`
-          )
-          .classList.remove("text-gray-500", "border-transparent");
-      }
-    </script>
-
-    <footer
-      class="bg-gradient-to-r from-blue-600 to-violet-700 text-white py-8 shadow-lg mt-8"
-    >
-      <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
-        <p class="text-base text-white mb-2">
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <p class="text-base text-white mb-3">
           Developed by
           <a
             class="underline hover:font-bold transition"
             href="https://fransandi.com"
             target="_blank"
-            s
             >Fran Sandi</a
           >
           as final project for the
-          <span class="italic">AI in Healthcare</span> course, part of the
+          <span class="italic">AI in Healthcare</span> course,
           <span class="italic"
             >Master of Science in Artificial Intelligence</span
           >
-          at the
-          <span class="italic">University of Texas at Austin</span>.
+          at the <span class="italic">University of Texas at Austin</span>.
         </p>
 
-        <a
-          href="https://github.com/Fransandi/CareLens"
-          target="_blank"
-          class="text-sm min-w-[160px] inline-flex items-center gap-2 bg-white text-blue-700 font-semibold px-3 py-2 rounded shadow hover:bg-blue-100 transition"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            fill="currentColor"
-            viewBox="0 0 24 24"
+        <div class="flex justify-center gap-2">
+          <a
+            href="https://github.com/Fransandi/CareLens"
+            target="_blank"
+            class="button-primary"
           >
-            <path
-              d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.96.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.33-1.3-1.68-1.3-1.68-1.07-.74.08-.72.08-.72 1.18.08 1.8 1.22 1.8 1.22 1.05 1.8 2.75 1.28 3.42.98.11-.76.41-1.28.74-1.58-2.55-.29-5.23-1.27-5.23-5.67 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.15 1.17a10.98 10.98 0 0 1 2.87-.39c.97.01 1.95.13 2.87.39 2.18-1.48 3.14-1.17 3.14-1.17.62 1.57.23 2.73.12 3.02.74.8 1.18 1.82 1.18 3.07 0 4.41-2.69 5.37-5.25 5.65.43.38.81 1.11.81 2.24 0 1.62-.01 2.92-.01 3.32 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
+            <img
+              src="img/github.svg"
+              alt="GitHub Logo"
+              class="h-5 w-5 mr-2 ml-0"
             />
-          </svg>
-          <span> View on GitHub </span>
-        </a>
+            <span>View on GitHub</span>
+          </a>
+          <a
+            href="./research_report.pdf"
+            target="_blank"
+            class="button-secondary"
+          >
+            <img
+              src="img/notebook.svg"
+              alt="Notebook Icon"
+              class="h-5 w-5 mr-2 ml-0"
+            />
+            <span>Read Report</span>
+          </a>
+        </div>
       </div>
     </footer>
   </body>
